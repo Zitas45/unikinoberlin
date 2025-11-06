@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Oder 'master', je nachdem, welchen Branch du für dein Hauptprojekt verwendest
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Oder die Node.js-Version, die du verwendest
+
+      - name: Install dependencies ⚙️
+        run: npm install
+
+      - name: Build 🏗️
+        run: npm run build
+        env:
+          # Diese Umgebungsvariablen werden während des Builds verwendet
+          # und kommen aus den GitHub Secrets
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # Der Ordner, in den Vite deine gebuildeten Dateien legt
+          # Wenn du eine benutzerdefinierte Domain hast, kannst du diese hier angeben:
+          # cname: example.com
+          # publish_branch: gh-pages # Standardmäßig 'gh-pages', kann aber auch 'main' sein, wenn du den /docs-Ordner verwendest
