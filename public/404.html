@@ -8,6 +8,13 @@
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="src/main.js"></script>
+    <script>
+      // If this is a 404 page, redirect to the correct path
+      if (sessionStorage.getItem('redirect') === null) {
+        sessionStorage.setItem('redirect', window.location.href);
+      }
+      // Redirect to the index page
+      window.location.href = '/unikinoberlin/';
+    </script>
   </body>
 </html>
