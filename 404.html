@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unikino Berlin</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      // If this is a 404 page, redirect to the correct path
+      if (sessionStorage.getItem('redirect') === null) {
+        sessionStorage.setItem('redirect', window.location.href);
+      }
+      // Redirect to the index page
+      window.location.href = '/unikinoberlin/';
+    </script>
+  </body>
+</html>
