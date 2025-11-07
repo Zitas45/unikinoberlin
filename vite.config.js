@@ -5,4 +5,7 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
   base: '/unikinoberlin/', // Passe dies an den Namen deines GitHub-Repositorys an
+  build: {
+    outDir: 'dist', // Dies sollte bereits der Standard sein
+  }
 })
