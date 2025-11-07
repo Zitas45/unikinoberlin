@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout 🛎️
@@ -40,4 +42,3 @@ jobs:
           # Wenn du eine benutzerdefinierte Domain hast, kannst du diese hier angeben:
           # cname: example.com
           # publish_branch: gh-pages # Standardmäßig 'gh-pages', kann aber auch 'main' sein, wenn du den /docs-Ordner verwendest
-
