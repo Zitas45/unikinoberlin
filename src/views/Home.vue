@@ -12,5 +12,5 @@ onMounted(() => {
 </script>
 <template>
   <Body :movies="upcomingMovies"></Body>
-  <NextMovie></NextMovie>
+  <!-- <NextMovie></NextMovie>-->
 </template>

@@ -37,12 +37,12 @@ function formatSimpleDate(dateString) {
 
 <section id="about" class="about-section">
 	<div class="about-container">
-		<h2>Das erwartet dich bei Charlie's</h2>
+		<h2>Das erwartet dich bei uns</h2>
 		<div class="features-grid">
 			<div class="feature-item">
 				<div class="feature-icon">🎬</div>
 				<h3>Vielfältiges Programm</h3>
-				<p>Von Blockbustern über Kultklassiker bis hin zu Arthouse-Perlen – bei uns ist für jeden Geschmack etwas dabei. (Alle Filme in OmdU)</p>
+				<p>Von Blockbustern über Kultklassiker bis hin zu Arthouse – bei uns ist für jeden Geschmack etwas dabei. (Alle Filme in OmdU)</p>
 			</div>
 			<div class="feature-item">
 				<div class="feature-icon">💰</div>

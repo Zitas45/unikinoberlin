@@ -20,6 +20,18 @@ function scrollToTop() {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+// Neue Wrapper-Funktion, die mehrere Aktionen ausführt
+function handleNavClick(targetSelector) {
+	// 1. Schließe das Menü
+	closeMenu();
+
+	// 2. Scrolle sanft zur Sektion
+	const section = document.querySelector(targetSelector);
+	if (section) {
+		section.scrollIntoView({ behavior: 'smooth' });
+	}
+}
+
 function formatSimpleDate(dateString) {
   if (!dateString) return '';
   const date = new Date(dateString);
@@ -50,10 +62,10 @@ function formatSimpleDate(dateString) {
 		</button>
 
 		<div class="nav-links" :class="{ 'is-open': isMenuOpen }">
-			<a href="#programm" @click="closeMenu">Programm</a>
-			<a href="#about" @click="closeMenu">Über uns</a>
-			<a href="#preise" @click="closeMenu">Preise</a>
-			<a href="#kontakt" @click="closeMenu">Kontakt</a>
+			<a href="#about" @click.prevent="handleNavClick('#about')">Über uns</a>
+			<a href="#programm" @click.prevent="handleNavClick('#programm')">Programm</a>
+			<!--<a href="#preise" @click.prevent="handleNavClick('#preise')">Preise</a>-->
+			<a href="#kontakt" @click.prevent="handleNavClick('#kontakt')">Kontakt</a>
 			<!-- Bedingter Link für Login/Admin mit router-link -->
 			<router-link v-if="!user" to="/login" @click="closeMenu">Login</router-link>
 			<router-link v-if="user" to="/admin" @click="closeMenu">Admin</router-link>
