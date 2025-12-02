@@ -23,9 +23,9 @@ function formatSimpleDate(dateString) {
 }
 
 const carouselImages = ref([
-  { src: 'https://images.unsplash.com/photo-1489599849927-2ee91e4543e3?q=80&w=2070&auto=format&fit=crop', alt: 'Unser Kinosaal', caption: 'Unser gemütlicher Kinosaal MA 001' },
-  { src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop', alt: 'Unser Team', caption: 'Das ehrenamtliche Team vom Charlies Campus Filmclub' },
-  { src: 'https://images.unsplash.com/photo-1627483262092-9a6a3b614952?q=80&w=2070&auto=format&fit=crop', alt: 'Snacks und Getränke', caption: 'Faire Preise für Snacks & Getränke' }
+  { src: '../assets/1.jpg', alt: 'Unser Kinosaal', caption: 'Unser gemütlicher Kinosaal MA 001' },
+  { src: '../assets/2.jpg', alt: 'Unser Team', caption: 'Glühweinbowle' },
+  { src: '../assets/3.jpg', alt: 'Snacks und Getränke', caption: 'Frisches Popcorn und weitere Snacks & Getränke' }
 ]);
 
 const currentIndex = ref(0);

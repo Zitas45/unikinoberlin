@@ -6,7 +6,7 @@
 		<div class="footer-content">
 			<div class="footer-section" id="kontakt">
 				<h3>Kontakt</h3>
-				<p>📍 TU Berlin, Mathematikgebäude <br>MA 001</p>
+				<a href="https://maps.app.goo.gl/7G8nNzuFdpHk71sr6"><p>📍 TU Berlin, Mathematikgebäude <br>MA 001</p></a>
 				<p>📧 <a href="mailto:charlie@unifilm.de">charlie@unifilm.de</a></p>
 			</div>
 			
