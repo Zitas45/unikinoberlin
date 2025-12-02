@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue';
 // Empfängt die Filmliste von der App.vue Komponente
 defineProps({
   movies: Array
@@ -19,6 +20,22 @@ function formatSimpleDate(dateString) {
     hour: '2-digit',
     minute: '2-digit'
   }) + ' Uhr';
+}
+
+const carouselImages = ref([
+  { src: 'https://images.unsplash.com/photo-1489599849927-2ee91e4543e3?q=80&w=2070&auto=format&fit=crop', alt: 'Unser Kinosaal', caption: 'Unser gemütlicher Kinosaal MA 001' },
+  { src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop', alt: 'Unser Team', caption: 'Das ehrenamtliche Team vom Charlies Campus Filmclub' },
+  { src: 'https://images.unsplash.com/photo-1627483262092-9a6a3b614952?q=80&w=2070&auto=format&fit=crop', alt: 'Snacks und Getränke', caption: 'Faire Preise für Snacks & Getränke' }
+]);
+
+const currentIndex = ref(0);
+
+function nextSlide() {
+  currentIndex.value = (currentIndex.value + 1) % carouselImages.value.length;
+}
+
+function prevSlide() {
+  currentIndex.value = (currentIndex.value - 1 + carouselImages.value.length) % carouselImages.value.length;
 }
 
 </script>
@@ -63,8 +80,27 @@ function formatSimpleDate(dateString) {
 	</div>
 </section>
 
+<section id="caroussel" class="caroussel-section">
+  <div class="caroussel-container">
+    <h2>Unser Kino & Team</h2>
+    <div class="carousel">
+      <div class="carousel-inner" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+        <div class="carousel-item" v-for="(image, index) in carouselImages" :key="index">
+          <img :src="image.src" :alt="image.alt">
+          <div class="carousel-caption">{{ image.caption }}</div>
+        </div>
+      </div>
+      <button @click="prevSlide" class="carousel-control prev" aria-label="Vorheriges Bild">❮</button>
+      <button @click="nextSlide" class="carousel-control next" aria-label="Nächstes Bild">❯</button>
+      <div class="carousel-dots">
+        <span v-for="(image, index) in carouselImages" :key="index" :class="{ active: currentIndex === index }" @click="currentIndex = index"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="programm">
-	<h2>Aktuellles Programm</h2>
+	<h2>Aktuelles Programm</h2>
 
 	<div class="movie-grid">
 		<div v-for="movie in movies" :key="movie.id" class="movie-card">
@@ -185,6 +221,95 @@ function formatSimpleDate(dateString) {
 	line-height: 1.6;
 }
 
+/* --- Caroussel Section --- */
+.caroussel-section {
+  background-color: #111;
+  padding: 4rem 1rem;
+}
+
+.caroussel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.caroussel-section h2 {
+  font-size: 2.5rem;
+  color: #ffcc00;
+  margin-bottom: 2.5rem;
+}
+
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  position: relative;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff;
+  padding: 2rem 1rem 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffcc00;
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-control:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-control.prev { left: 10px; border-radius: 5px 0 0 5px; }
+.carousel-control.next { right: 10px; border-radius: 0 5px 5px 0; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-dots span {
+  width: 12px; height: 12px; background-color: rgba(255, 255, 255, 0.5); border-radius: 50%; cursor: pointer; transition: background-color 0.3s ease;
+}
+.carousel-dots span.active { background-color: #ffcc00; }
+
 /* --- Programm Section --- */
 #programm {
 	padding: 4rem 1rem;
@@ -276,5 +401,12 @@ function formatSimpleDate(dateString) {
 	.about-section h2 {
 		font-size: 2rem;
 	}
+	.caroussel-section h2 {
+		font-size: 2rem;
+	}
+	.carousel-item img {
+		height: 40vh;
+	}
+	.carousel-caption { font-size: 1rem; }
 }
 </style>
