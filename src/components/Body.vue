@@ -21,9 +21,12 @@ function formatSimpleDate(dateString) {
   if (!dateString) return '';
   const date = new Date(dateString);
   return date.toLocaleString('de-DE', {
-    weekday: 'long',
+    weekday: 'long', // z.B. Dienstag
+    day: '2-digit',    // z.B. 03
+    month: '2-digit',  // z.B. 12
+    year: 'numeric',   // z.B. 2024
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
   }) + ' Uhr';
 }
 

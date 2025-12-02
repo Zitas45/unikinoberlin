@@ -34,12 +34,33 @@ function handleNavClick(targetSelector) {
 
 function formatSimpleDate(dateString) {
   if (!dateString) return '';
-  const date = new Date(dateString);
-  return date.toLocaleString('de-DE', {
-    weekday: 'long',
+
+  const eventDate = new Date(dateString);
+  const now = new Date();
+
+  // Setze die Zeit für den Vergleich auf Mitternacht zurück
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  const eventDateOnly = new Date(eventDate);
+  eventDateOnly.setHours(0, 0, 0, 0);
+
+  const timeString = eventDate.toLocaleTimeString('de-DE', {
     hour: '2-digit',
     minute: '2-digit'
   }) + ' Uhr';
+
+  if (eventDateOnly.getTime() === today.getTime()) {
+    return `Heute, ${timeString}`;
+  } else if (eventDateOnly.getTime() === tomorrow.getTime()) {
+    return `Morgen, ${timeString}`;
+  } else {
+    const weekday = eventDate.toLocaleString('de-DE', { weekday: 'long' });
+    return `${weekday}, ${timeString}`;
+  }
 }
 
 </script>
