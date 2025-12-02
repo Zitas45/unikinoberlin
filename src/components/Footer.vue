@@ -31,6 +31,9 @@
 				<p>Der Charlies Campus Filmclub ist das studentische Kino der TU Berlin. Seit über 20 Jahren bringen wir großes Kino auf den Campus!</p>
 			</div>
 		</div>
+		<div class="footer-legal">
+			<p><strong>Wichtiger Hinweis:</strong> Aus lizenzrechtlichen Gründen weisen wir darauf hin, dass sich unser Angebot an Studierende und Hochschulangehörige richtet. Soweit nicht anders gekennzeichnet, ist der Zutritt zu den Filmvorführungen nur Studierenden und Hochschulangehörigen gestattet.</p>
+		</div>
 	</footer>
 </template>
 
@@ -91,5 +94,16 @@
 
 .social-link:hover {
 	transform: scale(1.2);
+}
+
+.footer-legal {
+	max-width: 1200px;
+	margin: 3rem auto 0;
+	padding-top: 2rem;
+	border-top: 1px solid #2a2a2a;
+	text-align: center;
+	font-size: 0.8rem;
+	color: #999;
+	line-height: 1.5;
 }
 </style>
