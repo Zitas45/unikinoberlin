@@ -1,5 +1,10 @@
 <script setup>
 import { ref } from 'vue';
+
+import image1 from '../assets/1.jpg';
+import image2 from '../assets/2.jpg';
+import image3 from '../assets/3.jpg';
+
 // Empfängt die Filmliste von der App.vue Komponente
 defineProps({
   movies: Array
@@ -23,9 +28,9 @@ function formatSimpleDate(dateString) {
 }
 
 const carouselImages = ref([
-  { src: '../assets/1.jpg', alt: 'Unser Kinosaal', caption: 'Unser gemütlicher Kinosaal MA 001' },
-  { src: '../assets/2.jpg', alt: 'Unser Team', caption: 'Glühweinbowle' },
-  { src: '../assets/3.jpg', alt: 'Snacks und Getränke', caption: 'Frisches Popcorn und weitere Snacks & Getränke' }
+  { src: image1, alt: 'Unser Kinosaal', caption: 'Unser gemütlicher Kinosaal MA 001' },
+  { src: image2, alt: 'Glühweinbowle', caption: 'Glühweinbowle' },
+  { src: image3, alt: 'Snacks und Getränke', caption: 'Frisches Popcorn und weitere Snacks & Getränke' }
 ]);
 
 const currentIndex = ref(0);
